@@ -58,5 +58,5 @@ def analyze_code_from_file(file_path):
         print(f"File '{file_path}' not found. Please check the path.")
 
 if __name__ == "__main__":
-    file_path = 'path_to_your_local_file.cpp'  # Local path to the C++ file
+    file_path = '/tmp/file_to_analyze.cpp'  # Local path to the C++ file
     analyze_code_from_file(file_path)
