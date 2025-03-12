@@ -1,5 +1,4 @@
 import re
-import requests
 
 # Функція для обчислення кількості рядків коду (SLOC)
 def count_sloc(code):
@@ -35,18 +34,6 @@ def kokola_metric(base_metric, *other_metrics):
     normalization_factor = 1 + sum(R)
     return weighted_sum / normalization_factor
 
-# Функція для завантаження файлу з GitHub
-def download_file_from_github(repo_owner, repo_name, file_path, save_path):
-    url = f"https://raw.githubusercontent.com/{repo_owner}/{repo_name}/blob/master/{file_path}"
-    response = requests.get(url)
-    
-    if response.status_code == 200:
-        with open(save_path, 'w') as file:
-            file.write(response.text)
-        print(f"File downloaded and saved as {save_path}")
-    else:
-        print(f"Failed to download file: {response.status_code}")
-
 # Головна функція для аналізу
 def analyze_code_from_file(file_path):
     try:
@@ -71,10 +58,5 @@ def analyze_code_from_file(file_path):
         print(f"File '{file_path}' not found. Please check the path.")
 
 if __name__ == "__main__":
-    repo_owner = 'microsoft'  # Replace with repository owner
-    repo_name = 'VCSamples'  # Replace with repository name
-    file_path = 'VC2012Samples/Windows 8 samples/C++/Windows 8 app samples/Accelerometer sensor sample (Windows 8)/C++/common/suspensionmanager.cpp'  # Path to file in GitHub repository
-    save_path = 'downloaded_test_file.cpp'  # Local path to save file
-    
-    download_file_from_github(repo_owner, repo_name, file_path, save_path)
-    analyze_code_from_file(save_path)
+    file_path = 'path_to_your_local_file.cpp'  # Local path to the C++ file
+    analyze_code_from_file(file_path)
