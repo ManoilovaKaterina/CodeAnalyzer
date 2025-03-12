@@ -26,4 +26,4 @@ jobs:
 
       - name: Download and analyze code
         run: |
-          python scripts/metrics_calculator.py
+          python scripts/AnalyzeHybrid.py
