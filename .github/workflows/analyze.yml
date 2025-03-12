@@ -24,6 +24,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Download and analyze code
+      - name: Download C++ file
+        run: |
+          curl -o /tmp/file_to_analyze.cpp https://raw.githubusercontent.com/microsoft/VCSamples/refs/heads/master/VC2012Samples/Windows%208%20samples/C%2B%2B/Windows%208%20app%20samples/Accelerometer%20sensor%20sample%20(Windows%208)/C%2B%2B/common/suspensionmanager.cpp
+
+      - name: Analyze code
         run: |
           python AnalyzeHybrid.py
