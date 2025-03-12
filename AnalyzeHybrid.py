@@ -37,7 +37,7 @@ def kokola_metric(base_metric, *other_metrics):
 
 # Функція для завантаження файлу з GitHub
 def download_file_from_github(repo_owner, repo_name, file_path, save_path):
-    url = f"https://raw.githubusercontent.com/{repo_owner}/{repo_name}/main/{file_path}"
+    url = f"https://raw.githubusercontent.com/{repo_owner}/{repo_name}/blob/master/{file_path}"
     response = requests.get(url)
     
     if response.status_code == 200:
