@@ -1,0 +1,29 @@
+name: Calculate Metrics
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Дозволяє вручну запустити workflow
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Download and analyze code
+        run: |
+          python scripts/metrics_calculator.py
