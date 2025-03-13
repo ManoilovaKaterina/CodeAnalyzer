@@ -1,0 +1,33 @@
+name: Calculate Metrics
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Дозволяє вручну запустити workflow
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Download C++ file
+        run: |
+          curl -o /tmp/file_to_analyze.cpp "https://raw.githubusercontent.com/microsoft/VCSamples/refs/heads/master/VC2012Samples/Windows%208%20samples/C%2B%2B/Windows%208%20app%20samples/Accelerometer%20sensor%20sample%20(Windows%208)/C%2B%2B/common/suspensionmanager.cpp"
+
+      - name: Analyze code
+        run: |
+          python codeAnalyzerFull.py /tmp/file_to_analyze.cpp
